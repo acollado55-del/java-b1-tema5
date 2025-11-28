@@ -63,38 +63,52 @@ public class ClasseGenerica<T> {
     // TODO: Declare a list to store elements of type T
     private List<T> elements;
 
+
     // TODO: Initialize the list in the constructor
     public ClasseGenerica() {
-        // elements = ...
+         elements = new ArrayList<>();
+
+         
     }
 
     // TODO: Add the given element to the list
     public void addElement(T element) {
         // ...
+        elements.add(element);
     }
 
     // TODO: Return the first element in the list, or null if the list is empty
     public T getFirstElement() {
+        
         // ...
+        if (elements.isEmpty()) {
+            return null;
+        }
+        return elements.get(0);
         
     }
 
     // TODO: Return the last element in the list, or null if the list is empty
     public T getLastElement() {
         // ...
+        if (elements.isEmpty()) {
+            return null;
+        }
+        return elements.get(elements.size() - 1);
         
     }
 
     // TODO: Return the number of elements in the list
     public int getTotalElements() {
         // ...
+        return elements.size();
     
     }
 
     // -------------------------------------------------------------
     // Manual test using IDE
     // -------------------------------------------------------------
-    /*
+    
     public static void main(String[] args) {
         ClasseGenerica<String> texts = new ClasseGenerica<>();
         texts.addElement("Hello");
@@ -107,12 +121,13 @@ public class ClasseGenerica<T> {
         ClasseGenerica<Integer> numbers = new ClasseGenerica<>();
         numbers.addElement(100);
         numbers.addElement(200);
+        
 
         System.out.println(numbers.getFirstElement()); // 100
         System.out.println(numbers.getLastElement());   // 200
         System.out.println(numbers.getTotalElements()); // 2
     }
-	*/
+	
 	// Torna a comentar aquest main quan vulguis executar els tests amb maven test
     // Vuelve a comentar este main cuando quieras ejecutar los tests con:
     // mvn test
