@@ -81,49 +81,83 @@ import java.util.List;
  * // Shirt sales: 20
  */
 
-public class PairRegistry<T, U> {
+public class PairRegistry<T, U> 
+{
 
     // TODO: create a list to store Pair<T, U> objects
+    private List<Pair<T, U>> pairs;
 
     public PairRegistry() {
         // TODO: initialize the list
+        pairs = new ArrayList<>();
+
     }
 
     // TODO: add a new Pair<T, U> to the list
-    public void addPair(T first, U second) {
-        
+    public void addPair(T first, U second) 
+    {
+        pairs.add(new Pair<>(first, second));
+
     }
 
     // TODO: print all pairs in the format: name - value
-    public void printAll() {
+    public void printAll() 
+    {
+        for (Pair<T, U> pair : pairs) 
+            {
+            System.out.println(pair.first + " - " + pair.second);
+            }   
         
     }
 
     // TODO: find the value associated with the given key
-    public U getValueByKey(T key) {
+    public U getValueByKey(T key) 
+    {
+        for (Pair<T, U> pair : pairs) 
+            {
+            if ((pair.first == null && key == null) || (pair.first != null && pair.first.equals(key))) 
+                {
+                return pair.second;
+                }
+        
+             
+            }
         return null;
     }
 
     // TODO: return the total sum if U is Integer, otherwise return null
-    public U sumValues() {
-        return null;
-    }
+    public U sumValues() 
+    {
+        if (pairs.isEmpty() || !(pairs.get(0).second instanceof Integer)) 
+            {
+            return null;
+            }
+
+        Integer sum = 0;
+        for (Pair<T, U> pair : pairs) 
+            {
+            sum += (Integer) pair.second;
+            }
+        return (U) sum;
+    }   
+       
+      
+    
 
     // -------------------------------------------------------------
     // Manual test using IDE
     // -------------------------------------------------------------
-    /*
+    
     public static void main(String[] args) {
         PairRegistry<String, Integer> sales = new PairRegistry<>();
         sales.addPair("Shirt", 20);
         sales.addPair("Trousers", 15);
         sales.addPair("Shoes", 30);
-
         sales.printAll();
         System.out.println("Total sold: " + sales.sumValues());
         System.out.println("Shirt sales: " + sales.getValueByKey("Shirt"));
     }
-    */
+    
     // Torna a comentar aquest main quan vulguis executar els tests amb maven test
     // Vuelve a comentar este main cuando quieras ejecutar los tests con:
     // mvn test
